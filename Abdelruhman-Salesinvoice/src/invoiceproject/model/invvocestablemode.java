@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 
-public class InvoicesTableModel extends AbstractTableModel {
+public class invvocestablemode extends AbstractTableModel {
     
     private ArrayList<Invoice> invoices;     
     private String[] columns = {"No.", "Date", "Customer","Total"};
 
-    public InvoicesTableModel(ArrayList<Invoice> invoices) {
+    public invvocestablemode(ArrayList<Invoice> invoices) {
         this.invoices = invoices;
     }
 
