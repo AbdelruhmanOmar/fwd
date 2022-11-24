@@ -2,7 +2,7 @@
 package invoiceproject.controller;
 
 import invoiceproject.model.Invoice;
-import invoiceproject.model.InvoicesTableModel;
+import invoiceproject.model.invvocestablemode;
 import invoiceproject.model.Items;
 import invoiceproject.model.ItemsTableModel;
 import invoiceproject.view.InvoiceFrame;
@@ -67,13 +67,13 @@ public class Controller implements ActionListener, ListSelectionListener {
 }
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        int selectedIndex = frame.getInvoiceTable().getSelectedRow();
+        int selectedIndex = frame.getinvvocestable().getSelectedRow();
         if (selectedIndex !=-1){
-        Invoice currentInovice = frame.getInvoices().get(selectedIndex);
-        frame.getInvoiceNumLabel().setText(""+currentInovice.getNum());
-        frame.getInvoiceDateLabel().setText(""+currentInovice.getDate());
-        frame.getCustomerNameLabel().setText(""+currentInovice.getCustomer());
-        frame.getInvoiceTotalLabel().setText(""+currentInovice.getInvoiceTotal());
+        Invoice currentInovice = frame.getinvvoces().get(selectedIndex);
+        frame.getinvvoceNumLabel().setText(""+currentInovice.getNum());
+        frame.getinvvoceNumLabel().setText(""+currentInovice.getDate());
+        frame.getinvvoceNumLabel().setText(""+currentInovice.getCustomer());
+        frame.getinvvoceNumLabel().setText(""+currentInovice.getInvoiceTotal());
         ItemsTableModel itemsTableModel = new ItemsTableModel(currentInovice.getItems());
         frame.getItemsTable().setModel(itemsTableModel);
         itemsTableModel.fireTableDataChanged();
@@ -126,10 +126,10 @@ public class Controller implements ActionListener, ListSelectionListener {
                     }
 //                    System.out.println("Check#2");
                 }
-                frame.setInvoices(invoiceArray);
-                InvoicesTableModel invoicesTableModel = new InvoicesTableModel(invoiceArray);
+                frame.setinvvoces(invoiceArray);
+                invvocestablemode invoicesTableModel = new invvocestablemode(invoiceArray);
                 frame.setInvoicesTableModel(invoicesTableModel);
-                frame.getInvoiceTable().setModel(invoicesTableModel);
+                frame.getinvvocestable().setModel(invoicesTableModel);
                 frame.getInvoicesTableModel().fireTableDataChanged();
                 
             } catch (IOException ex) {
@@ -140,7 +140,7 @@ public class Controller implements ActionListener, ListSelectionListener {
     }
    
     private void saveFile() {
-        ArrayList<Invoice> invoices = frame.getInvoices();
+        ArrayList<Invoice> invoices = frame.getinvvoces();
         String headers = "";
         String lines = "";
         for (Invoice invoice : invoices){
@@ -180,9 +180,9 @@ public class Controller implements ActionListener, ListSelectionListener {
     }
 
     private void deleteInvoice() {
-        int selectedRow = frame.getInvoiceTable().getSelectedRow();
+        int selectedRow = frame.getinvvocestable().getSelectedRow();
         if (selectedRow != -1){
-            frame.getInvoices().remove(selectedRow);
+            frame.getinvvoces().remove(selectedRow);
             frame.getInvoicesTableModel().fireTableDataChanged();
         }
     }                      
@@ -193,9 +193,9 @@ public class Controller implements ActionListener, ListSelectionListener {
 
     private void deleteItem() {
         int selectedRow = frame.getItemsTable().getSelectedRow();
-        int selectedInv = frame.getInvoiceTable().getSelectedRow();
+        int selectedInv = frame.getinvvocestable().getSelectedRow();
         if (selectedRow != -1 && selectedInv != -1){
-            Invoice invoice = frame.getInvoices().get(selectedInv);
+            Invoice invoice = frame.getinvvoces().get(selectedInv);
             invoice.getItems().remove(selectedRow);
             ItemsTableModel itemsTableModel = new ItemsTableModel(invoice.getItems());
             frame.getItemsTable().setModel(itemsTableModel);
@@ -216,7 +216,7 @@ public class Controller implements ActionListener, ListSelectionListener {
         String customer = frame.getCustNameField().getText();
         int num = frame.getNextInvoiceNum();        
         Invoice invoice = new Invoice(num, date, customer);
-        frame.getInvoices().add(invoice); 
+        frame.getinvvoces().add(invoice);
         frame.getInvoicesTableModel().fireTableDataChanged();
         frame.getInvDialog().setVisible(false);
         frame.getInvDialog().dispose();
@@ -230,9 +230,9 @@ public class Controller implements ActionListener, ListSelectionListener {
         String priceString = frame.getItemPriceField().getText();
         int count = Integer.parseInt(countString);
         double price = Double.parseDouble(priceString);
-        int selectedInvoice = frame.getInvoiceTable().getSelectedRow();
+        int selectedInvoice = frame.getinvvocestable().getSelectedRow();
         if (selectedInvoice != -1){
-            Invoice invoice = frame.getInvoices().get(selectedInvoice);
+            Invoice invoice = frame.getinvvoces().get(selectedInvoice);
             Items items = new Items(item , price, count, invoice);
             invoice.getItems().add(items);
             ItemsTableModel itemsTableModel = new ItemsTableModel(invoice.getItems());

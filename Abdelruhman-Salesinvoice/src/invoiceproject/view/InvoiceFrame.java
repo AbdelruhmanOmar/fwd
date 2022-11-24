@@ -3,7 +3,9 @@ package invoiceproject.view;
 
 import invoiceproject.controller.Controller;
 import invoiceproject.model.Invoice;
-import invoiceproject.model.InvoicesTableModel;
+import invoiceproject.model.invvocestablemode;
+import invoiceproject.model.invvocestablemode;
+
 import java.awt.Label;
 import java.awt.TextField;
 import java.util.ArrayList;
@@ -396,7 +398,7 @@ public class InvoiceFrame extends javax.swing.JFrame {
 
 private ArrayList<Invoice> invvoces;
 private Controller controller = new Controller(this);
-private InvoicesTableModel InvoicesTableModel;
+private invvocestablemode InvoicesTableModel;
 
     public ArrayList<Invoice> getinvvoces() {
         if (invvoces == null)invvoces = new ArrayList<>() ;
@@ -407,14 +409,14 @@ private InvoicesTableModel InvoicesTableModel;
         this.invvoces = invvoces;
     }
 
-    public InvoicesTableModel getInvoicesTableModel() {
+    public invvocestablemode getInvoicesTableModel() {
         if (InvoicesTableModel == null ){
-            InvoicesTableModel = new InvoicesTableModel(getinvvoces());
+            InvoicesTableModel = new invvocestablemode(getinvvoces());
         }
         return InvoicesTableModel;
     }
 
-    public void setInvoicesTableModel(InvoicesTableModel InvoicesTableModel) {
+    public void setInvoicesTableModel(invvocestablemode InvoicesTableModel) {
         this.InvoicesTableModel = InvoicesTableModel;
     }
     
